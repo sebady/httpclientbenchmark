@@ -7,6 +7,7 @@ import io.netty.handler.timeout.ReadTimeoutHandler;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.netty.ByteBufFlux;
+import reactor.netty.http.client.HttpClient;
 import reactor.netty.resources.ConnectionProvider;
 
 import java.nio.charset.StandardCharsets;
@@ -14,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ReactorNettyEngine implements HttpClientEngine {
-    reactor.netty.http.client.HttpClient client;
+    HttpClient client;
 
     @Override
     public void createClient(String host, int port) {
@@ -29,7 +30,7 @@ public class ReactorNettyEngine implements HttpClientEngine {
 
     @Override
     public String blockingGET(String uri) {
-        reactor.netty.http.client.HttpClient.RequestSender requestSender = client
+        HttpClient.RequestSender requestSender = client
                 .request(HttpMethod.GET)
                 .uri(uri);
 
@@ -68,7 +69,7 @@ public class ReactorNettyEngine implements HttpClientEngine {
     public CompletableFuture<String> nonblockingGET(String uri) {
         final CompletableFuture<String> cfResponse = new CompletableFuture<>();
 
-        reactor.netty.http.client.HttpClient.RequestSender requestSender = client
+        HttpClient.RequestSender requestSender = client
                 .request(HttpMethod.GET)
                 .uri(uri);
 
@@ -92,7 +93,7 @@ public class ReactorNettyEngine implements HttpClientEngine {
     public CompletableFuture<String> nonblockingPOST(String uri, String body) {
         final CompletableFuture<String> cfResponse = new CompletableFuture<>();
 
-        reactor.netty.http.client.HttpClient.ResponseReceiver<?> requestSender = client
+        HttpClient.ResponseReceiver<?> requestSender = client
                 .post()
                 .uri(uri)
                 .send(ByteBufFlux.fromString(Flux.just(body)));

@@ -1,18 +1,18 @@
-package com.ss.benchmark.httpclient.reactornetty;
+package com.ss.benchmark.httpclient.rxnetty;
 
 import com.ss.benchmark.httpclient.HttpClientEngine;
-import com.ss.benchmark.httpclient.PerformanceTests;
+import com.ss.benchmark.httpclient.BasePerformanceTest;
 import org.testng.annotations.Test;
 
 /**
  * @author sharath.srinivasa
  */
 @Test(groups = "performance")
-public class ReactorNettyPerformanceTests extends PerformanceTests {
+public class PerformanceTest extends BasePerformanceTest {
 
     @Override
     protected HttpClientEngine getClient() {
-        return new ReactorNettyEngine();
+        return new RXNettyEngine();
     }
 }
 

@@ -1,18 +1,18 @@
-package com.ss.benchmark.httpclient.rxnetty;
+package com.ss.benchmark.httpclient.apacheasync;
 
 import com.ss.benchmark.httpclient.HttpClientEngine;
-import com.ss.benchmark.httpclient.PerformanceTests;
+import com.ss.benchmark.httpclient.BasePerformanceTest;
 import org.testng.annotations.Test;
 
 /**
  * @author sharath.srinivasa
  */
 @Test(groups = "performance")
-public class RXNettyPerformanceTests extends PerformanceTests {
+public class PerformanceTest extends BasePerformanceTest {
 
     @Override
     protected HttpClientEngine getClient() {
-        return new RXNettyEngine();
+        return new ApacheAsyncEngine();
     }
 }
 
