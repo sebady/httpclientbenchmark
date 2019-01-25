@@ -20,10 +20,12 @@ public class Engine implements HttpClientEngine {
 
     @Override
     public void createClient(String host, int port) {
-        PoolConfig<ByteBuf, ByteBuf> poolConfig = new PoolConfig<ByteBuf, ByteBuf>().maxConnections(MAX_CONNECTION_POOL_SIZE);/* leave this out? .maxIdleTimeoutMillis(CONNECTION_TTL);*/
+        PoolConfig<ByteBuf, ByteBuf> poolConfig = new PoolConfig<ByteBuf, ByteBuf>()
+                .maxConnections(MAX_CONNECTION_POOL_SIZE);/* leave this out? .maxIdleTimeoutMillis(CONNECTION_TTL);*/
         client = HttpClient
                 .newClient(SingleHostPoolingProviderFactory.create(poolConfig),
-                        Observable.just(new Host(new InetSocketAddress(host, port)))).readTimeOut(READ_TIMEOUT, TimeUnit.MILLISECONDS)
+                        Observable.just(new Host(new InetSocketAddress(host, port))))
+                .readTimeOut(READ_TIMEOUT, TimeUnit.MILLISECONDS)
                 .channelOption(ChannelOption.CONNECT_TIMEOUT_MILLIS, CONNECT_TIMEOUT);
     }
 

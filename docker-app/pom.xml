@@ -72,7 +72,7 @@
                     <descriptors>
                         <descriptor>src/assembly/bin.xml</descriptor>
                     </descriptors>
-                    <finalName>${artifactId}</finalName>
+                    <finalName>${project.artifactId}</finalName>
                     <appendAssemblyId>false</appendAssemblyId>
                 </configuration>
                 <executions>
@@ -97,7 +97,7 @@
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>${artifactId}.zip</include>
+                            <include>${project.artifactId}.zip</include>
                         </resource>
                     </resources>
                 </configuration>

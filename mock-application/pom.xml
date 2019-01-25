@@ -102,7 +102,7 @@
                         <resource>
                             <targetPath>/</targetPath>
                             <directory>${project.build.directory}</directory>
-                            <include>${artifactId}.jar</include>
+                            <include>${project.artifactId}.jar</include>
                         </resource>
                     </resources>
                 </configuration>

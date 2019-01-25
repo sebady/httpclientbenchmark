@@ -74,7 +74,7 @@ public class Engine implements HttpClientEngine {
         HttpGet request = new HttpGet(baseUrl + path);
         request.setConfig(requestConfig);
 
-        client.execute(request, new FutureCallback<>() {
+        client.execute(request, new FutureCallback<HttpResponse>() {
             @Override
             public void completed(HttpResponse httpResponse) {
                 try {
@@ -108,7 +108,7 @@ public class Engine implements HttpClientEngine {
         stringEntity.setContentType("application/json");
         request.setEntity(stringEntity);
 
-        client.execute(request, new FutureCallback<>() {
+        client.execute(request, new FutureCallback<HttpResponse>() {
             @Override
             public void completed(HttpResponse httpResponse) {
                 try {

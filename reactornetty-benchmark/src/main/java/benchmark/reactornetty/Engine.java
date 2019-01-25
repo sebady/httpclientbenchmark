@@ -48,9 +48,7 @@ public class Engine implements HttpClientEngine {
 
         performGET(path)
                 .doOnError(t -> cfResponse.completeExceptionally(t))
-                .subscribe(res -> cfResponse.complete(res),
-                        null,
-                        null);
+                .subscribe(res -> cfResponse.complete(res));
 
         return cfResponse;
     }
@@ -61,9 +59,7 @@ public class Engine implements HttpClientEngine {
 
         performPOST(path, reqPayload)
                 .doOnError(t -> cfResponse.completeExceptionally(t))
-                .subscribe(res -> cfResponse.complete(res),
-                        null,
-                        null);
+                .subscribe(res -> cfResponse.complete(res));
 
         return cfResponse;
     }
